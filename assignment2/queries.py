@@ -1,7 +1,7 @@
 queries = ["" for i in range(0, 17)]
 
 ### 0. Report the votes for the normal (i.e, not special) Senate Election in Maryland in 2018.
-### Output column order: candidatename, candidatevotes
+### Output column order: candidatename, partyname, candidatevotes
 ### Order by candidatename ascending
 queries[0] = """
 select candidatename, partyname, candidatevotes
@@ -95,7 +95,7 @@ select 0;
 ### Each county+state combination should only appear once in the output.
 ### HINT: Use "not in".
 ### Output Columns: countyname, statename
-### Order by name, statecode ascending
+### Order by countyname, statename ascending
 queries[10] = """
 select 0;
 """
@@ -146,8 +146,9 @@ from temp t;
 ### to None. We will do this through use of two temporary tables using WITH
 ### clause. You have to complete this query using a "full outer join" to get the 
 ### desired result.
-### Output: statecode, countname2000, countyname2016, votes2000, votes2016
-### Order by: statecode, countyname2000, countyname2016 ascending
+###
+### Output: statecode2000 (from temp1), statecode2016 (from temp2), countname2000, countyname2016, votes2000, votes2016
+### Order by: statecode2000, statecode2016, countyname2000, countyname2016 ascending
 queries[13] = """
 with temp1 as (select countyname, statecode, candidatevotes
                from pres_county_returns
